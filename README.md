@@ -26,52 +26,45 @@ Dilate the Image
 ### REF_NO : 212223230159
 
 ```
- Python
-# Import the necessary packages
-import numpy as np
+
 import cv2
-import matplotlib.pyplot as plt
-
-
-# Create the Text using cv2.putText
-img = np.zeros((100,400),dtype = 'uint8')
+import numpy as np
+import matplotlib.pyplot as plt# Create a blank image
+image = np.zeros((500, 500, 3), dtype=np.uint8)# Add text on the image using cv2.putText
 font = cv2.FONT_HERSHEY_SIMPLEX
-cv2.putText(img ,'A A D I',(80,70),font,2,(255),5,cv2.LINE_AA)
-plt.imshow(img)
+cv2.putText(image, 'priya', (100, 250), font, 1, (255, 255, 255), 2, cv2.LINE_AA)# Display the input image
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for displaying
+plt.title("Input Image with Text")
+plt.axis('off')# Create a simple square kernel (3x3)
+kernel = np.ones((3, 3), np.uint8)
+# Create a simple square kernel (3x3)
+kernel = np.ones((3, 3), np.uint8)# Apply erosion (shrinking effect)
+eroded_image = cv2.erode(image, kernel, iterations=1)# Display the eroded image
+plt.imshow(cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
+plt.title("Eroded Image")
+plt.axis('off')# Apply dilation (expanding effect)
+dilated_image = cv2.dilate(image, kernel, iterations=1)# Display the dilated image
+plt.imshow(cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
+plt.title("Dilated Image")
 plt.axis('off')
-
-# Create the structuring element
-kernel = np.ones((5,5),np.uint8)
-kernel1 = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
-cv2.erode(img,kernel)
-
-# Erode the image
-
-img_erode = cv2.erode(img,kernel1)
-plt.imshow(img_erode)
-plt.axis('off')
-
-# Dilate the image
-img_dilate = cv2.dilate(img,kernel1)
-plt.imshow(img_dilate)
-plt.axis('off')
-
 ```
 
 ## Output:
 
-
 ### Display the input Image
-![image](https://github.com/YendluriChandana/erosion--dilation/assets/139842204/551b2c7d-70aa-4f1b-b02c-9b9dfb7f9c3f)
 
+
+![image](https://github.com/user-attachments/assets/f6d7c2c1-4bac-4286-873c-7b53f902e352)
 
 ### Display the Eroded Image
-![image](https://github.com/YendluriChandana/erosion--dilation/assets/139842204/ebb57822-ef17-4234-8f68-674c68a70da0)
 
+
+![image](https://github.com/user-attachments/assets/852ce064-cdc6-4354-8842-096882125e4c)
 
 ### Display the Dilated Image
-![image](https://github.com/YendluriChandana/erosion--dilation/assets/139842204/0d0cb5fa-9914-4583-88bc-e10739bb2962)
 
+
+![image](https://github.com/user-attachments/assets/492dc2e7-d65b-433f-9cb3-e8cf7a13b171)
 
 ## Result
 Thus the generated text image is eroded and dilated using python and OpenCV.
